@@ -1,0 +1,113 @@
+:root{
+  --paper:#EEF0F6; --surface:#FFFFFF; --ink:#171B24; --muted:#5C6677;
+  --border:#E0E3EC; --line:#D5D9E4;
+  --violet:#574BE6; --violet-deep:#3F35C2; --amber:#F0A536;
+  --panel:#161A26; --panel-line:#2A3142; --panel-ink:#E8EBF3; --panel-dim:#8A93A8;
+  --side:#13161F;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Inter",system-ui,sans-serif; line-height:1.5;
+}
+
+.app{display:grid;grid-template-columns:248px 1fr;min-height:100vh}
+
+/* ---------- Sidebar ---------- */
+.sidebar{
+  background:var(--side);color:#fff;padding:26px 20px;position:sticky;top:0;height:100vh;
+  display:flex;flex-direction:column;gap:18px;overflow-y:auto;
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;
+  background:var(--violet);font-size:16px;font-weight:700}
+.brand-name{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:17px;letter-spacing:-.01em}
+.side-note{color:#9AA3B8;font-size:13px;margin:0;line-height:1.45}
+.examples{display:flex;flex-direction:column;gap:6px;margin-top:2px}
+.ex-group-title{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:#727B92;margin:14px 0 4px}
+.ex{appearance:none;text-align:left;border:0;background:transparent;color:#D7DCEA;cursor:pointer;
+  font:inherit;font-size:13.5px;padding:8px 10px;border-radius:8px;border:1px solid transparent;transition:background .14s,border-color .14s}
+.ex:hover{background:#1E2331;border-color:#2A3142}
+.ex:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+
+/* ---------- Main ---------- */
+.main{padding:40px 30px 70px;max-width:780px}
+.menu{display:none}
+header{margin-bottom:24px}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--violet);font-weight:500}
+h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(30px,5vw,46px);
+  line-height:1.03;margin:8px 0 10px;letter-spacing:-.02em}
+.lede{color:var(--muted);max-width:54ch;font-size:16px;margin:0}
+
+.tabs{display:flex;gap:6px;margin-top:6px;background:var(--surface);
+  border:1px solid var(--border);border-radius:12px;padding:6px;width:fit-content}
+.tab{appearance:none;border:0;background:transparent;cursor:pointer;
+  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:14px;color:var(--muted);
+  padding:9px 16px;border-radius:8px;display:flex;align-items:center;gap:8px}
+.tab .n{font-family:"JetBrains Mono",monospace;font-size:11px;opacity:.7}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff}
+.tab:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:24px;margin-top:18px;box-shadow:0 4px 24px -18px rgba(23,27,36,.4)}
+.field{margin-bottom:18px}
+.field:last-child{margin-bottom:0}
+label{display:block;font-weight:600;font-size:13.5px;margin-bottom:6px}
+label .hint{font-weight:400;color:var(--muted);margin-left:6px}
+input[type=text],textarea,select{
+  width:100%;font:inherit;font-size:15px;color:var(--ink);background:#FAFBFD;
+  border:1px solid var(--line);border-radius:10px;padding:11px 13px;transition:border .15s,box-shadow .15s}
+textarea{resize:vertical;min-height:84px;line-height:1.5}
+input:focus,textarea:focus,select:focus{outline:0;border-color:var(--violet);
+  box-shadow:0 0 0 3px rgba(87,75,230,.14);background:#fff}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+.row>*{flex:1;min-width:180px}
+.checks{display:flex;gap:18px;flex-wrap:wrap}
+.check{display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;font-weight:500}
+.check input{width:17px;height:17px;accent-color:var(--violet);cursor:pointer}
+
+.go{appearance:none;border:0;cursor:pointer;margin-top:22px;
+  font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:15px;color:#fff;
+  background:var(--violet);padding:13px 22px;border-radius:11px;
+  display:inline-flex;align-items:center;gap:10px;transition:background .15s,transform .05s}
+.go:hover{background:var(--violet-deep)}
+.go:active{transform:translateY(1px)}
+.go:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.go .arr{font-family:"JetBrains Mono",monospace}
+
+/* Signature: dark "forged spec" output panel */
+.out{margin-top:22px;opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s}
+.out.show{opacity:1;transform:none}
+.panel{background:var(--panel);border:1px solid var(--panel-line);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:14px}
+.panel-bar{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid var(--panel-line)}
+.dot{width:10px;height:10px;border-radius:50%}
+.panel-name{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--panel-dim);margin-left:6px}
+.copy{margin-left:auto;appearance:none;border:1px solid var(--panel-line);background:transparent;
+  color:var(--panel-ink);font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:500;
+  padding:6px 11px;border-radius:7px;cursor:pointer;transition:background .15s,border-color .15s}
+.copy:hover{background:#222838;border-color:#39415a}
+.copy:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.panel pre{margin:0;padding:18px;color:var(--panel-ink);font-family:"JetBrains Mono",monospace;
+  font-size:13px;line-height:1.6;white-space:pre-wrap;word-break:break-word;overflow-x:auto}
+
+.foot{margin-top:34px;color:var(--muted);font-size:13px;
+  font-family:"JetBrains Mono",monospace}
+.hidden{display:none}
+
+/* ---------- Mobile ---------- */
+@media (max-width:760px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;bottom:0;width:248px;transform:translateX(-100%);
+    transition:transform .22s ease;z-index:20;box-shadow:0 0 40px rgba(0,0,0,.3)}
+  .sidebar.open{transform:none}
+  .main{padding:24px 18px 60px}
+  .menu{display:inline-flex;align-items:center;margin-bottom:18px;
+    font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:13px;color:var(--ink);
+    background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:8px 14px;cursor:pointer}
+}
+@media (prefers-reduced-motion:reduce){.out,.sidebar{transition:none}}

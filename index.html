@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prompt Forge — write better prompts for Claude Code</title>
+<meta name="description" content="Turn a quick note into a sharp, structured prompt for Claude Code. Runs entirely in your browser — no API, no cost.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- Sidebar: brand + example ideas -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <span class="brand-mark">⌘</span>
+      <span class="brand-name">Prompt Forge</span>
+    </div>
+    <p class="side-note">Stuck on wording? Tap an idea to load it.</p>
+    <nav class="examples" id="examples" aria-label="Example ideas"></nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <button class="menu" id="menu" aria-label="Show examples">Ideas</button>
+
+    <header>
+      <div class="eyebrow">runs in your browser · nothing to pay for</div>
+      <h1>Turn a quick note into a sharp Claude&nbsp;Code prompt.</h1>
+      <p class="lede">Jot down what you need. Forge structures it into a prompt Claude Code can act on cleanly — scoped, with the right context and a clear definition of done.</p>
+    </header>
+
+    <div class="tabs" role="tablist" aria-label="Modes">
+      <button class="tab" id="tab-quick" role="tab" aria-selected="true" aria-controls="panel-quick">
+        <span class="n">01</span> Quick request
+      </button>
+      <button class="tab" id="tab-scaffold" role="tab" aria-selected="false" aria-controls="panel-scaffold">
+        <span class="n">02</span> Scaffold a project
+      </button>
+    </div>
+
+    <!-- MODE 1 -->
+    <section class="card" id="panel-quick" role="tabpanel" aria-labelledby="tab-quick">
+      <div class="field">
+        <label for="q-task">What do you need done? <span class="hint">a sentence or two is plenty</span></label>
+        <textarea id="q-task" placeholder="e.g. Users get logged out at random — figure out why and fix it"></textarea>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="q-type">Kind of work</label>
+          <select id="q-type">
+            <option value="feature">Build a feature</option>
+            <option value="bug">Fix a bug</option>
+            <option value="refactor">Refactor</option>
+            <option value="explain">Explain code</option>
+            <option value="review">Review code</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="q-area">Files / area <span class="hint">optional</span></label>
+          <input type="text" id="q-area" placeholder="e.g. src/auth, the session handler">
+        </div>
+      </div>
+      <div class="field">
+        <label for="q-constraints">Constraints <span class="hint">optional · one per line</span></label>
+        <textarea id="q-constraints" placeholder="e.g. Don't change the database schema&#10;Keep it framework-free"></textarea>
+      </div>
+      <div class="field">
+        <div class="checks">
+          <label class="check"><input type="checkbox" id="q-plan" checked> Ask it to plan first</label>
+          <label class="check"><input type="checkbox" id="q-tests" checked> Add &amp; run tests</label>
+        </div>
+      </div>
+      <button class="go" id="q-go">Forge prompt <span class="arr">→</span></button>
+      <div class="out" id="q-out"></div>
+    </section>
+
+    <!-- MODE 2 -->
+    <section class="card hidden" id="panel-scaffold" role="tabpanel" aria-labelledby="tab-scaffold">
+      <div class="row">
+        <div class="field">
+          <label for="s-name">Project name</label>
+          <input type="text" id="s-name" placeholder="e.g. Trailhead">
+        </div>
+        <div class="field">
+          <label for="s-stack">Stack</label>
+          <select id="s-stack"></select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="s-desc">What does it do? <span class="hint">who's it for, what's the point</span></label>
+        <textarea id="s-desc" placeholder="e.g. A web app where hikers log trails they've done and get suggestions for what to try next"></textarea>
+      </div>
+      <div class="field">
+        <label for="s-features">Core features <span class="hint">one per line</span></label>
+        <textarea id="s-features" placeholder="Log a completed hike&#10;Browse nearby trails&#10;Get recommendations"></textarea>
+      </div>
+      <button class="go" id="s-go">Forge scaffold <span class="arr">→</span></button>
+      <div class="out" id="s-out"></div>
+    </section>
+
+    <div class="foot">Everything is generated locally — your text never leaves the page.</div>
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
